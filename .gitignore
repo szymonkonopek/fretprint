@@ -5,4 +5,5 @@ __pycache__/
 
 # Source photos used as local test fixtures
 *.docx
-zdjecie-*.png
+reference-chart.png
+faded-photo.png

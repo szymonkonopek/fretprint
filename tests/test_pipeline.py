@@ -10,8 +10,8 @@ from converter.render import A4_PX, render_chart, to_pdf, to_png
 from converter.scales import SCALES, occupancy
 
 ROOT = Path(__file__).resolve().parent.parent
-REFERENCE_CHART = ROOT / "zdjecie-bazowe.png"
-FADED_PHOTO = ROOT / "zdjecie-do-przerobienia.png"
+REFERENCE_CHART = ROOT / "reference-chart.png"
+FADED_PHOTO = ROOT / "faded-photo.png"
 
 needs_reference_chart = pytest.mark.skipif(not REFERENCE_CHART.exists(), reason="reference chart photo not present")
 needs_faded_photo = pytest.mark.skipif(not FADED_PHOTO.exists(), reason="faded chart photo not present")

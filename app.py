@@ -35,7 +35,7 @@ def _scale_file(scale_key: str, extension: str) -> bytes:
 
 
 def _file_name(name: str, extension: str) -> str:
-    return f"{name.lower().replace(' ', '-')}-12-pozycji-A4.{extension}"
+    return f"{name.lower().replace(' ', '-')}-12-positions-A4.{extension}"
 
 
 def _send(data: bytes, name: str, extension: str):
@@ -83,7 +83,7 @@ def all_charts():
             archive.writestr(_file_name(scale.name, "pdf"), _scale_file(scale.key, "pdf"))
             archive.writestr(_file_name(scale.name, "png"), _scale_file(scale.key, "png"))
     buffer.seek(0)
-    return send_file(buffer, mimetype="application/zip", as_attachment=True, download_name="skale-12-pozycji-A4.zip")
+    return send_file(buffer, mimetype="application/zip", as_attachment=True, download_name="scales-12-positions-A4.zip")
 
 
 @app.post("/api/analyze")
@@ -135,7 +135,7 @@ if __name__ == "__main__":
     port = int(os.environ.get("PORT", "5050"))
     url = f"http://127.0.0.1:{port}/"
     _skip_reverse_dns_lookup()
-    print(f"Fretprint dziala pod adresem {url} (Ctrl+C konczy)")
+    print(f"Fretprint is running at {url} (Ctrl+C to stop)")
     if os.environ.get("OPEN_BROWSER", "1") == "1":
         threading.Timer(1.0, webbrowser.open, args=(url,)).start()
     app.run(host="127.0.0.1", port=port, debug=False)

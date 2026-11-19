@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pl">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -115,50 +115,50 @@
 <body>
 <header>
   <h1>Fretprint</h1>
-  <p>Wgraj zdjęcie wykresu skali w 12 pozycjach, a dostaniesz czysty, kolorowy wykres gotowy do druku na A4. Możesz też od razu wybrać dowolną skalę z listy, bez zdjęcia.</p>
+  <p>Upload a photo of a 12-position scale chart and get a clean, colour-coded chart ready to print on A4. You can also pick any scale from the list without a photo.</p>
 </header>
 <main>
   <section aria-labelledby="photo-heading">
-    <h2 id="photo-heading"><span>1.</span>Zdjęcie wykresu</h2>
+    <h2 id="photo-heading"><span>1.</span>Chart photo</h2>
     <label class="dropzone" id="dropzone">
       <input type="file" id="photo-input" accept="image/*,.heic,.heif">
-      <strong>Wybierz zdjęcie lub upuść je tutaj</strong>
-      PNG, JPG lub HEIC, cała strona z 12 diagramami
+      <strong>Choose a photo or drop it here</strong>
+      PNG, JPG or HEIC, the whole page with 12 diagrams
     </label>
     <div class="status" id="status" role="status" aria-live="polite"></div>
     <details id="overlay-details" hidden>
-      <summary>Pokaż, co zostało odczytane ze zdjęcia</summary>
-      <img id="overlay" alt="Zdjęcie z zaznaczonymi rozpoznanymi kropkami">
-      <p class="legend">Zielone okręgi to rozpoznane kropki, czerwone punkty to puste miejsca na siatce.</p>
+      <summary>Show what was read from the photo</summary>
+      <img id="overlay" alt="Photo with the detected dots marked">
+      <p class="legend">Green circles are detected dots, red points are empty places on the grid.</p>
     </details>
   </section>
 
   <section aria-labelledby="output-heading">
-    <h2 id="output-heading"><span>2.</span>Wykres do druku</h2>
-    <label class="field" for="target">Skala na wykresie wyjściowym</label>
+    <h2 id="output-heading"><span>2.</span>Printable chart</h2>
+    <label class="field" for="target">Scale on the output chart</label>
     <select id="target"></select>
     <div class="actions">
-      <a class="button" id="download-png" href="#">Pobierz PNG</a>
-      <a class="button" id="download-pdf" href="#">Pobierz PDF</a>
-      <a class="button secondary" id="download-all" href="/api/all.zip">Wszystkie skale (ZIP)</a>
+      <a class="button" id="download-png" href="#">Download PNG</a>
+      <a class="button" id="download-pdf" href="#">Download PDF</a>
+      <a class="button secondary" id="download-all" href="/api/all.zip">All scales (ZIP)</a>
     </div>
-    <div class="preview"><img id="preview" alt="Podgląd wygenerowanego wykresu"></div>
-    <p class="hint">Plik ma format A4 w 300 dpi. Przy drukowaniu wybierz rozmiar A4 i skalę 100% (lub „dopasuj do strony”).</p>
+    <div class="preview"><img id="preview" alt="Preview of the generated chart"></div>
+    <p class="hint">The file is A4 at 300 dpi. When printing, choose A4 paper and 100% scale (or “fit to page”).</p>
   </section>
 </main>
 
 <script>
 const FROM_PHOTO = "__photo__";
 const METHOD_TEXT = {
-  title: "nazwa odczytana z tytułu",
-  colors: "skala ustalona po kolorach kropek",
-  shape: "skala ustalona po układzie kropek",
+  title: "name read from the title",
+  colors: "scale identified by the dot colours",
+  shape: "scale identified by the dot layout",
 };
 const ERROR_TEXT = {
-  no_file: "Nie wybrano pliku.",
-  unreadable_image: "Nie udało się otworzyć tego pliku jako zdjęcia.",
-  chart_not_found: "Nie udało się znaleźć na zdjęciu 12 diagramów (4 kolumny po 3). Wykadruj zdjęcie tak, żeby cała strona była widoczna i w miarę prosto.",
-  file_too_large: "Plik jest za duży (limit 30 MB).",
+  no_file: "No file selected.",
+  unreadable_image: "This file could not be opened as an image.",
+  chart_not_found: "Could not find 12 diagrams in the photo (4 columns of 3). Crop the photo so the whole page is visible and reasonably straight.",
+  file_too_large: "The file is too large (30 MB limit).",
 };
 
 const state = { scales: [], photo: null };
@@ -196,8 +196,8 @@ function fillTargets() {
   target.innerHTML = "";
   if (state.photo) {
     const label = state.photo.scale
-      ? `Taka jak na zdjęciu (${scaleName(state.photo.scale)})`
-      : "Taka jak na zdjęciu (kropka w kropkę)";
+      ? `Same as the photo (${scaleName(state.photo.scale)})`
+      : "Same as the photo (dot for dot)";
     target.add(new Option(label, FROM_PHOTO));
   }
   for (const scale of state.scales) {
@@ -211,17 +211,17 @@ function fillTargets() {
 function describePhoto(photo) {
   const agreement = Math.floor(photo.shapeAgreement * 100);
   if (photo.scale) {
-    showStatus("ok", `Rozpoznano: <b>${scaleName(photo.scale)}</b> (${METHOD_TEXT[photo.method]}, układ kropek zgodny w ${agreement}%).`);
+    showStatus("ok", `Recognised: <b>${scaleName(photo.scale)}</b> (${METHOD_TEXT[photo.method]}, dot layout matches ${agreement}%).`);
   } else if (photo.candidates.length > 1 && agreement >= 88) {
-    showStatus("warn", "Układ kropek pasuje do kilku skal o tych samych kształtach, a nazwy nie udało się odczytać. Wybierz skalę z listy po prawej.");
+    showStatus("warn", "The dot layout fits several scales that share the same shapes, and the name could not be read. Pick the scale from the list on the right.");
   } else {
-    showStatus("warn", `Ten wykres nie pasuje do żadnej znanej skali (najlepsza zgodność ${agreement}%). Możesz go odtworzyć kropka w kropkę albo wybrać skalę z listy.`);
+    showStatus("warn", `This chart matches no known scale (best match ${agreement}%). You can reproduce it dot for dot or pick a scale from the list.`);
   }
 }
 
 async function upload(file) {
   if (!file) return;
-  showStatus("busy", "Analizuję zdjęcie…");
+  showStatus("busy", "Analysing the photo…");
   overlayDetails.hidden = true;
   state.photo = null;
   const body = new FormData();
@@ -231,12 +231,12 @@ async function upload(file) {
     const response = await fetch("/api/analyze", { method: "POST", body });
     payload = await response.json();
   } catch (error) {
-    showStatus("error", "Nie udało się połączyć z serwerem.");
+    showStatus("error", "Could not reach the server.");
     fillTargets();
     return;
   }
   if (!payload.ok) {
-    showStatus("error", ERROR_TEXT[payload.error] || "Coś poszło nie tak.");
+    showStatus("error", ERROR_TEXT[payload.error] || "Something went wrong.");
     fillTargets();
     return;
   }

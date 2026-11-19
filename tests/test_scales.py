@@ -38,6 +38,8 @@ def test_formulas():
     assert SCALES["harmonic_minor"].formula == "1 2 b3 4 5 b6 7"
     assert SCALES["major_pentatonic"].formula == "1 2 3 5 6"
     assert SCALES["minor_pentatonic"].formula == "1 b3 4 5 b7"
+    assert SCALES["diminished_whole_half"].formula == "1 2 b3 4 b5 b6 bb7 7"
+    assert SCALES["diminished_half_whole"].formula == "1 b2 #2 3 #4 5 6 b7"
 
 
 def test_harmonic_minor_is_aeolian_with_a_raised_seventh():

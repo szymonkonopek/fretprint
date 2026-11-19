@@ -73,7 +73,8 @@ SCALES = {
         _scale("harmonic_minor", "Harmonic Minor", "MINOR", "1 2 b3 4 5 b6 7", 9),
         _scale("major_pentatonic", "Major Pentatonic", "PENTATONIC", "1 2 3 5 6", 0),
         _scale("minor_pentatonic", "Minor Pentatonic", "PENTATONIC", "1 b3 4 5 b7", 9),
-        _scale("diminished", "Diminished", "WHOLE-HALF", "1 2 b3 4 b5 b6 6 7", 0),
+        _scale("diminished_whole_half", "Diminished WH", "WHOLE-HALF", "1 2 b3 4 b5 b6 bb7 7", 0),
+        _scale("diminished_half_whole", "Diminished HW", "HALF-WHOLE", "1 b2 #2 3 #4 5 6 b7", 0),
     )
 }
 

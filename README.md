@@ -39,7 +39,7 @@ To regenerate the charts in `charts/` without starting the server:
 
 ## Charts
 
-All eleven charts are in [`charts/`](charts) as A4 PNG and PDF, ready to print. Click a chart for the full-size image.
+All twelve charts are in [`charts/`](charts) as A4 PNG and PDF, ready to print. Click a chart for the full-size image.
 
 <table>
 <tr>
@@ -59,7 +59,8 @@ All eleven charts are in [`charts/`](charts) as A4 PNG and PDF, ready to print. 
 </tr>
 <tr>
 <td align="center"><a href="charts/minor-pentatonic-12-positions-A4.png"><img src="docs/charts/minor-pentatonic.png" alt="Minor Pentatonic chart" width="260"></a><br><b>Minor Pentatonic</b><br><code>1 b3 4 5 b7</code><br><a href="charts/minor-pentatonic-12-positions-A4.png">PNG</a> · <a href="charts/minor-pentatonic-12-positions-A4.pdf">PDF</a></td>
-<td align="center"><a href="charts/diminished-12-positions-A4.png"><img src="docs/charts/diminished.png" alt="Diminished chart" width="260"></a><br><b>Diminished</b><br><code>1 2 b3 4 b5 b6 6 7</code><br><a href="charts/diminished-12-positions-A4.png">PNG</a> · <a href="charts/diminished-12-positions-A4.pdf">PDF</a></td>
+<td align="center"><a href="charts/diminished-wh-12-positions-A4.png"><img src="docs/charts/diminished-whole-half.png" alt="Diminished WH chart" width="260"></a><br><b>Diminished WH</b><br><code>1 2 b3 4 b5 b6 bb7 7</code><br><a href="charts/diminished-wh-12-positions-A4.png">PNG</a> · <a href="charts/diminished-wh-12-positions-A4.pdf">PDF</a></td>
+<td align="center"><a href="charts/diminished-hw-12-positions-A4.png"><img src="docs/charts/diminished-half-whole.png" alt="Diminished HW chart" width="260"></a><br><b>Diminished HW</b><br><code>1 b2 #2 3 #4 5 6 b7</code><br><a href="charts/diminished-hw-12-positions-A4.png">PNG</a> · <a href="charts/diminished-hw-12-positions-A4.pdf">PDF</a></td>
 </tr>
 </table>
 

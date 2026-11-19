@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.env
+
+# Source photos used as local test fixtures and generated charts
+*.docx
+zdjecie-*.png
+wykresy/

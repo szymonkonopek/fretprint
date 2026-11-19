@@ -1,0 +1,7 @@
+flask>=3.0
+pillow>=10.0
+pillow-heif>=0.16
+numpy>=1.26
+opencv-python-headless>=4.9
+rapidocr-onnxruntime>=1.2
+pytest>=8.0
